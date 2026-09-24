@@ -10,6 +10,10 @@ import workoutsRouter from './routes/workouts';
 
 const app = express();
 const port = 8000;
+const codespaceName = process.env.CODESPACE_NAME;
+const apiBaseUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : `http://localhost:${port}`;
 
 app.use(cors());
 app.use(express.json());
@@ -31,7 +35,7 @@ async function startServer(): Promise<void> {
   try {
     await connectDatabase();
     app.listen(port, () => {
-      console.log(`Octofit API listening on port ${port}`);
+      console.log(`Octofit API listening at ${apiBaseUrl}`);
     });
   } catch (error) {
     console.error('Unable to start API because MongoDB is unavailable:', error);
