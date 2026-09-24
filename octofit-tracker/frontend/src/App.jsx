@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
+import { getActivities, getUsers } from './api'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [apiStatus, setApiStatus] = useState('Checking API...')
+
+  useEffect(() => {
+    Promise.all([getUsers(), getActivities()])
+      .then(() => setApiStatus('API connected'))
+      .catch(() => setApiStatus('API unavailable'))
+  }, [])
 
   return (
     <>
@@ -17,6 +25,7 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
+          <p>{apiStatus}</p>
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
