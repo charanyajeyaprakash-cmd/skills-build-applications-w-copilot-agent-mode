@@ -23,6 +23,10 @@ app.use('/api/activities', activitiesRouter);
 app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/workouts', workoutsRouter);
 
+app.get('/', (_request, response) => {
+  response.json({ status: 'ok', service: 'Octofit API' });
+});
+
 app.get('/api/health', (_request, response) => {
   const databaseConnected = database.readyState === 1;
   response.status(databaseConnected ? 200 : 503).json({
