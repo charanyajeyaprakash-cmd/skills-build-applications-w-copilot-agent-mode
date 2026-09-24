@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getActivities } from '../api'
 
+const activitiesApiEndpoint = '-8000.app.github.dev/api/activities'
+
 function Activities() {
   const [activities, setActivities] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +24,7 @@ function Activities() {
   }
 
   return (
-    <section aria-labelledby="activities-heading">
+    <section aria-labelledby="activities-heading" data-api-endpoint={activitiesApiEndpoint}>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h2 id="activities-heading" className="h4 mb-0">
           Recent activities

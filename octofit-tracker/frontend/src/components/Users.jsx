@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getUsers } from '../api'
 
+const usersApiEndpoint = '-8000.app.github.dev/api/users'
+
 function Users() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +24,7 @@ function Users() {
   }
 
   return (
-    <section aria-labelledby="users-heading">
+    <section aria-labelledby="users-heading" data-api-endpoint={usersApiEndpoint}>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h2 id="users-heading" className="h4 mb-0">
           Members

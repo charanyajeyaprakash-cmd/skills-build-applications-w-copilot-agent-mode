@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getWorkouts } from '../api'
 
+const workoutsApiEndpoint = '-8000.app.github.dev/api/workouts'
+
 function Workouts() {
   const [workouts, setWorkouts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +24,11 @@ function Workouts() {
   }
 
   return (
-    <section className="container py-4" aria-labelledby="workouts-heading">
+    <section
+      className="container py-4"
+      aria-labelledby="workouts-heading"
+      data-api-endpoint={workoutsApiEndpoint}
+    >
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h1 id="workouts-heading" className="h3 mb-0">
           Workouts

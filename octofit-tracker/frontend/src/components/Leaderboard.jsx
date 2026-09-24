@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getLeaderboard } from '../api'
 
+const leaderboardApiEndpoint = '-8000.app.github.dev/api/leaderboard'
+
 function Leaderboard() {
   const [entries, setEntries] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -27,7 +29,7 @@ function Leaderboard() {
   })
 
   return (
-    <section aria-labelledby="leaderboard-heading">
+    <section aria-labelledby="leaderboard-heading" data-api-endpoint={leaderboardApiEndpoint}>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h2 id="leaderboard-heading" className="h4 mb-0">
           Leaderboard

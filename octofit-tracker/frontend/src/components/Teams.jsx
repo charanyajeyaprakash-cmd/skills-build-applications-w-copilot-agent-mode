@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getTeams } from '../api'
 
+const teamsApiEndpoint = '-8000.app.github.dev/api/teams'
+
 function Teams() {
   const [teams, setTeams] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +24,7 @@ function Teams() {
   }
 
   return (
-    <section aria-labelledby="teams-heading">
+    <section aria-labelledby="teams-heading" data-api-endpoint={teamsApiEndpoint}>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h2 id="teams-heading" className="h4 mb-0">
           Teams
