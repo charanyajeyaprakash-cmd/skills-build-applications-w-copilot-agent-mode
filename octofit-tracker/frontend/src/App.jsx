@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import { getActivities, getUsers } from './api'
+import Activities from './components/Activities.jsx'
+import Leaderboard from './components/Leaderboard.jsx'
+import Teams from './components/Teams.jsx'
+import Users from './components/Users.jsx'
+import Workouts from './components/Workouts.jsx'
 import './App.css'
 
 function App() {
@@ -17,27 +23,50 @@ function App() {
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+      <nav className="navbar navbar-expand bg-dark px-3" aria-label="Primary navigation">
+        <div className="navbar-nav gap-3">
+          <NavLink className="nav-link text-white" to="/">
+            Dashboard
+          </NavLink>
+          <NavLink className="nav-link text-white" to="/workouts">
+            Workouts
+          </NavLink>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>{apiStatus}</p>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </nav>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <section id="center">
+              <div className="hero">
+                <img className="base" src={heroImg} width="170" height="179" alt="" />
+                <img className="framework" src={reactLogo} alt="React logo" />
+                <img className="vite" src={viteLogo} alt="Vite logo" />
+              </div>
+              <div>
+                <h1>Get started</h1>
+                <p>{apiStatus}</p>
+                <p>
+                  Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+                </p>
+              </div>
+              <button
+                type="button"
+                className="counter"
+                onClick={() => setCount((count) => count + 1)}
+              >
+                Count is {count}
+              </button>
+              <Activities />
+              <Leaderboard />
+              <Teams />
+              <Users />
+            </section>
+          }
+        />
+        <Route path="/workouts" element={<Workouts />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
       <div className="ticks"></div>
 

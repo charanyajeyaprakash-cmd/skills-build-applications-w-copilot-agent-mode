@@ -5,7 +5,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   define: {
-    'import.meta.env.CODESPACE_NAME': JSON.stringify(process.env.CODESPACE_NAME || ''),
+    'import.meta.env.VITE_CODESPACE_NAME': JSON.stringify(
+      process.env.VITE_CODESPACE_NAME || process.env.CODESPACE_NAME || '',
+    ),
   },
   server: {
     port: 5173,
